@@ -1,21 +1,6 @@
 import streamlit as st
 
-import streamlit as st
-
-st.markdown("""
-<style>
-    body {
-        background-color: #ffffff; 
-        color: #000000; 
-    }
-    .stSidebar {
-        background-color: #2e6ed5; 
-    }
-    .stSidebar [data-testid="stMarkdownContainer"] p {
-        color: #ffffff; 
-    }
-</style>
-""", unsafe_allow_html=True)
+from ui.sale import run_sale
 
 def main() :
 
@@ -26,7 +11,7 @@ def main() :
     if choice==menu[0] :
         pass
     elif choice==menu[1] :
-        pass
+        run_sale
     elif choice==menu[2] :
         pass
     elif choice==menu[3] :
