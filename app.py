@@ -1,5 +1,8 @@
 import streamlit as st
 
+from ui.affairs import run_affairs
+from ui.home import run_home
+from ui.officetel import run_office
 from ui.sale import run_sale
 
 def main() :
@@ -9,13 +12,13 @@ def main() :
     choice=st.sidebar.selectbox('Menu',menu)
 
     if choice==menu[0] :
-        pass
+        run_home()
     elif choice==menu[1] :
-        run_sale
+        run_sale()
     elif choice==menu[2] :
-        pass
+        run_affairs()
     elif choice==menu[3] :
-        pass
+        run_office()
 
 if __name__=='__main__' :
     main()
