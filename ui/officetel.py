@@ -4,14 +4,14 @@ import joblib
 import streamlit as st
 import gdown
 
-file_id = "d/1t-8qdvi3_lHbK-Ams9W-yuisHWvaiyU5"
+file_id = "https://drive.google.com/file/d/1t-8qdvi3_lHbK-Ams9W-yuisHWvaiyU5/view?usp=drive_link"
 model_path="officetel.pkl"
 
 # 모델 다운로드 함수
 @st.cache_data
 def download_model():
     if not os.path.exists(model_path):
-        url = f"https://drive.google.com/uc?id={file_id}"
+        url = f"https://drive.google.com/uc?id={file_id}}"
         gdown.download(url, model_path, quiet=False)
     return model_path
 
