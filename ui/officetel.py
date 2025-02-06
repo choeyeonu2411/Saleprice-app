@@ -4,7 +4,7 @@ import joblib
 import streamlit as st
 import gdown
 
-file_id = "d/1t-8qdvi3_lHbK-Ams9W-yuisHWvaiyU5"
+file_id = "1t-8qdvi3_lHbK-Ams9W-yuisHWvaiyU5"
 model_path="officetel.pkl"
 
 # 모델 다운로드 함수
