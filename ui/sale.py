@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import joblib 
 import streamlit as st
@@ -10,18 +11,18 @@ model_path="officetel.pkl"
 @st.cache_data
 def download_model():
 
-     # 모델 다운로드
-    model_file = download_model()
-
-    # 모델 로드
-    model = joblib.load(model_file)
-
     if not os.path.exists(model_path):
         url = f"https://drive.google.com/uc?id={file_id}"
         gdown.download(url, model_path, quiet=False)
     return model_path
 
 def run_sale() :
+
+    # 모델 다운로드
+    model_file = download_model()
+
+    # 모델 로드
+    model = joblib.load(model_file)
 
     st.subheader('아파트 실거래가 에측')
     st.text('아파트 정보를 입력하세요')
