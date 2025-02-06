@@ -1,6 +1,25 @@
 import pandas as pd
 import joblib 
 import streamlit as st
+import gdown
+
+file_id = "1wIauG7PsNR9WZXgpEG6RswOUsQVqR2VR"
+model_path="officetel.pkl"
+
+# 모델 다운로드 함수
+@st.cache_data
+def download_model():
+
+     # 모델 다운로드
+    model_file = download_model()
+
+    # 모델 로드
+    model = joblib.load(model_file)
+
+    if not os.path.exists(model_path):
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, model_path, quiet=False)
+    return model_path
 
 def run_sale() :
 
@@ -29,9 +48,8 @@ def run_sale() :
     years=st.number_input('건축 년도',min_value=1900,value=1900)
     
     if st.button('예측하기') :
-        regressor=joblib.load('model/pipeline.pkl')
         new_data = pd.DataFrame([[region, area, floors,years]], columns=['시군구명','전용면적','층','건축년도'])
-        y_pred=regressor.predict(new_data)
+        y_pred=model.predict(new_data)
 
         pred_data=y_pred[0]
 
