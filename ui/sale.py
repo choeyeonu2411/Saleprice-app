@@ -5,7 +5,7 @@ import streamlit as st
 import gdown
 
 file_id = "1wIauG7PsNR9WZXgpEG6RswOUsQVqR2VR"
-model_path="officetel.pkl"
+model_path="pipeline.pkl"
 
 # 모델 다운로드 함수
 @st.cache_data
