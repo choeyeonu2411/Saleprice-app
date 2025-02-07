@@ -19,7 +19,7 @@ def fontRegistered():
 import platform
 
 if platform.system() == 'Windows':
-    plt.rcParams['font.family'] = 'Malgun Gothic'
+    plt.rcParams['font.family'] = 'NanumGothic'
     plt.rcParams['axes.unicode_minus'] = False
 
 # 한글처리를 위한 코드
