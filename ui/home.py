@@ -2,7 +2,6 @@
 import pandas as pd
 import streamlit as st
 from PIL import Image
-import requests
 
 def run_home() :
     st.markdown("<br>", unsafe_allow_html=True)
