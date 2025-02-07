@@ -1,3 +1,4 @@
+import os
 from pkgutil import get_data
 import matplotlib.pyplot as plt
 import requests
@@ -5,6 +6,21 @@ import seaborn as sb
 import pandas as pd
 import streamlit as st
 
+import matplotlib.font_manager as fm
+
+@st.cache_data
+def fontRegistered():
+    font_dirs = [os.getcwd() + '/custom_font']
+    font_files = fm.findSystemFonts(fontpaths=font_dirs)
+    for font_file in font_files:
+        fm.fontManager.addfont(font_file)
+    fm._load_fontmanager(try_read_cache=False)
+
+import platform
+
+if platform.system() == 'Windows':
+    plt.rcParams['font.family'] = 'Malgun Gothic'
+    plt.rcParams['axes.unicode_minus'] = False
 
 # 한글처리를 위한 코드
 import numpy as np
