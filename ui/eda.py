@@ -19,7 +19,7 @@ def fontRegistered():
 import platform
 
 if platform.system() == 'Windows':
-    plt.rcParams['font.family'] = 'NanumGothic'
+    plt.rcParams['font.family'] = 'Malgun Gothic'
     plt.rcParams['axes.unicode_minus'] = False
 
 # 한글처리를 위한 코드
@@ -41,6 +41,13 @@ else:
 
 
 def run_eda() :
+
+    fontRegistered()
+    plt.rc('font', family='NanumGothic')
+
+
+    st.title('K-Means Clustering App')
+
 
     st.subheader('탐색적 데이터 분석')
     st.info('데이터를 분석합니다.')
