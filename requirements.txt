@@ -3,3 +3,7 @@ pandas
 joblib
 gdown
 scikit-learn
+requests
+matplotlib
+platform
+gdown
