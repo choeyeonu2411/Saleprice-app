@@ -1,3 +1,4 @@
+from math import fma
 from pkgutil import get_data
 import matplotlib.pyplot as plt
 import requests
@@ -7,20 +8,21 @@ import streamlit as st
 
 # 한글처리를 위한 코드
 import numpy as np
-import seaborn as sb
 import platform
 
 from matplotlib import font_manager, rc
 plt.rcParams['axes.unicode_minus'] = False
 
-if platform.system() == 'Darwin':
-    rc('font', family='AppleGothic')
-elif platform.system() == 'Windows':
-    path = "c:/Windows/Fonts/malgun.ttf"
-    font_name = font_manager.FontProperties(fname=path).get_name()
-    rc('font', family=font_name)
-else:
-    print('Unknown system... sorry~~~~')
+if platform.system() == 'Darwin':  # macOS
+    plt.rc('font', family='AppleGothic')
+elif platform.system() == 'Windows':  # Windows
+    font_path = r'C:\Windows\Fonts\malgun.ttf'  # 맑은 고딕
+    font_prop = fma.FontProperties(fname=font_path)
+    plt.rc('font', family=font_prop.get_name())
+else:  # Linux
+    font_path = '/usr/share/fonts/truetype/nanum/NanumGothic.ttf'  # Ubuntu의 경우
+    font_prop = fm.FontProperties(fname=font_path)
+    plt.rc('font', family=font_prop.get_name())
 
 
 def run_eda() :
