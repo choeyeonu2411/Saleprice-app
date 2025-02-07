@@ -80,5 +80,6 @@ def run_sale() :
             
             st.success(f'예측된 실거래가는 {result} 입니다.')
             st.info(f'전용면적 {area}㎡는 약 {pyeong}평 입니다.')
+            st.warning("주의사항: 본 앱의 예측 결과는 참고용이며, 실제 거래 시 반드시 전문가와 상담을 권장합니다.")
 
 

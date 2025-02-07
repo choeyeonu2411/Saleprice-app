@@ -42,15 +42,14 @@ else:
 
 def run_eda() :
 
+    st.markdown("<br>", unsafe_allow_html=True)
+
     fontRegistered()
     plt.rc('font', family='NanumGothic')
 
-
-    st.title('K-Means Clustering App')
-
-
     st.subheader('탐색적 데이터 분석')
     st.info('데이터를 분석합니다.')
+    
 
     df=pd.read_csv('data/주택실거래가정보.csv',encoding='cp949')
     # 뉴스 기사
@@ -80,7 +79,7 @@ def run_eda() :
             st.write(f"{short_title}")
             st.write(f"{link}")
 
-    st.warning("주의사항: 본 앱의 예측 결과는 참고용이며, 실제 거래 시 반드시 전문가와 상담을 권장합니다.")
+    
 
     st.text('2024년도 주택 실거래 데이터')
     st.dataframe(df.loc[:,['시군구명','전용면적','층','건축년도','거래금액']])
@@ -153,4 +152,6 @@ def run_eda() :
             st.pyplot(fig1)
         elif choice==menu[1] :
             st.dataframe(df.loc[:,['시군구명','전용면적','층','건축년도','거래금액']].corr(numeric_only=True))
+    
+    
     

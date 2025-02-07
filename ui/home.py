@@ -7,12 +7,7 @@ def run_home() :
     st.markdown("<br>", unsafe_allow_html=True)
     
     st.markdown("<h3 style='text-align: center; color: gray;'>- AI 기반 부동산 실거래가 예측 서비스 -</h3>", unsafe_allow_html=True)
-    st.markdown("""
-    <p style='text-align: center; font-size:13px;'>
-    경기도 부동산 실거래가 예측 서비스는 최신 빅데이터와 AI 기술을 활용하여<br>
-    예측한 부동산 가격 정보를 제공합니다.
-    </p>
-    """, unsafe_allow_html=True)
+
     
     image = Image.open('img/home.jpg')
     st.image(image, use_container_width=True)
@@ -22,8 +17,8 @@ def run_home() :
 
     st.markdown("""
     ## 앱 소개
-    이 앱은 최신 AI 기술을 활용하여 경기도 지역의 주택 실거래가를 예측합니다. 
-    다양한 요인을 고려하여 정확한 예측 결과를 제공하며, 부동산 투자 및 주택 구매 결정에 도움을 드립니다.
+    경기도 부동산 실거래가 예측 서비스는 최신 빅데이터와 AI 기술을 활용하여
+    예측한 부동산 가격 정보를 제공합니다.
 
     ### 주요 기능
     - 지역별 주택 실거래가 예측

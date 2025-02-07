@@ -1,3 +1,5 @@
+import os
+import gdown
 import pandas as pd
 import joblib 
 import streamlit as st
@@ -48,7 +50,25 @@ region_to_dong = {
     '경기도여주시': ['능곡동']
 }
 
+file_id = "1xMTqS5cm_qgfoNKj7xMutk27eqN6xl9F"
+model_path="affairs.pkl"
+
+# 모델 다운로드 함수
+@st.cache_data
+def download_model():
+    if not os.path.exists(model_path):
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, model_path, quiet=False)
+    return model_path
+
 def run_affairs() :
+
+    # 모델 다운로드
+    model_file = download_model()
+
+    # 모델 로드
+    model = joblib.load(model_file)
+
 
     st.subheader('🏦 업무/상업용 실거래가 에측')
     st.text('상업오피스 정보를 입력하세요')
@@ -70,9 +90,8 @@ def run_affairs() :
     trader=st.selectbox('매수자거래자정보',trader_select)
     
     if st.button('예측하기') :
-        regressor=joblib.load('model/affairs.pkl')
         new_data = pd.DataFrame([[region,region2,area,trader ]], columns=['시군구명','읍면동리명','전용면적','매수자거래주체정보'])
-        y_pred=regressor.predict(new_data)
+        y_pred=model.predict(new_data)
 
         pred_data=y_pred[0]
 
@@ -95,5 +114,6 @@ def run_affairs() :
             
             st.success(f'예측된 실거래가는 {result} 입니다.')
             st.info(f'전용면적 {area}㎡는 약 {pyeong}평 입니다.')
+            st.warning("주의사항: 본 앱의 예측 결과는 참고용이며, 실제 거래 시 반드시 전문가와 상담을 권장합니다.")
 
 
