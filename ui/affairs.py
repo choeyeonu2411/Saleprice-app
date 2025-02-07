@@ -50,8 +50,8 @@ region_to_dong = {
 
 def run_affairs() :
 
-    st.subheader('업무/상업용 실거래가 에측')
-    st.text('아파트 정보를 입력하세요')
+    st.subheader('🏦 업무/상업용 실거래가 에측')
+    st.text('상업오피스 정보를 입력하세요')
 
     
     # 지역 선택
@@ -64,7 +64,7 @@ def run_affairs() :
     # 동 선택
     region2 = st.selectbox('동', available_dongs)
 
-    area=st.number_input('전용 면적',min_value=0,value=10)
+    area=st.number_input('전용 면적 ( ㎡ )',min_value=0,value=30)
 
     trader_select=sorted(['법인', '개인', '기타', '공공기관'])
     trader=st.selectbox('매수자거래자정보',trader_select)
@@ -90,6 +90,10 @@ def run_affairs() :
             else:  # 1억 미만일 경우
                 result = f'{pred_data:,}만원'
             
+            # 평수 계산
+            pyeong = round(area / 3.305785, 2)
+            
             st.success(f'예측된 실거래가는 {result} 입니다.')
+            st.info(f'전용면적 {area}㎡는 약 {pyeong}평 입니다.')
 
 

@@ -23,8 +23,8 @@ def run_office() :
     # 모델 로드
     model = joblib.load(model_file)
 
-    st.subheader('오피스텔 실거래가 에측')
-    st.text('아파트 정보를 입력하세요')
+    st.subheader('🏢 오피스텔 실거래가 에측')
+    st.text('오피스텔 정보를 입력하세요')
     region_select=sorted(['경기도 수원시권선구', '경기도 화성시', '경기도 시흥시', '경기도 오산시', '경기도 고양시일산동구',
        '경기도 하남시', '경기도용인시처인구', '경기도의정부시', '경기도수원시영통구', '경기도안양시동안구',
        '경기도 남양주시', '경기도김포시', '경기도 수원시팔달구', '경기도 평택시', '경기도안산시상록구',
@@ -43,21 +43,21 @@ def run_office() :
        '경기도 부천시오정구', '경기도 연천군', '경기도 동두천시', '경기도 양주시', '경기도양주시', '경기도포천시',
        '경기도부천시오정구'])
     region=st.selectbox('지역',region_select)
-    area=st.number_input('전용 면적',min_value=0,value=10)
+    area=st.number_input('전용 면적 ( ㎡ )',min_value=0,value=30)
     floors=st.number_input('층',min_value=1,value=1)
     years=st.number_input('건축 년도',min_value=1900,value=2000)
     
-    if st.button('예측하기') :
-        new_data = pd.DataFrame([[region, area, floors,years]], columns=['시군구명','전용면적','층','건축년도'])
-        y_pred=model.predict(new_data)
+    if st.button('예측하기'):
+        new_data = pd.DataFrame([[region, area, floors, years]], columns=['시군구명', '전용면적', '층', '건축년도'])
+        y_pred = model.predict(new_data)
 
-        pred_data=y_pred[0]
+        pred_data = y_pred[0]
 
-        if pred_data<0 :
-            st.error('예측이 불가능한 데이터 입니다.')
-        else :
+        if pred_data < 0:
+            st.error('예측이 불가능한 데이터입니다.')
+        else:
             pred_data = round(pred_data)
-            if pred_data >= 10000 :  # 1억 이상일 경우
+            if pred_data >= 10000:  # 1억 이상일 경우
                 billions = pred_data // 10000
                 millions = pred_data % 10000
                 if millions == 0:
@@ -67,6 +67,8 @@ def run_office() :
             else:  # 1억 미만일 경우
                 result = f'{pred_data:,}만원'
             
+            # 평수 계산
+            pyeong = round(area / 3.305785, 2)
+            
             st.success(f'예측된 실거래가는 {result} 입니다.')
-
-
+            st.info(f'전용면적 {area}㎡는 약 {pyeong}평 입니다.')

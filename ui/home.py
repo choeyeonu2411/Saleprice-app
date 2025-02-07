@@ -1,5 +1,8 @@
+
+import pandas as pd
 import streamlit as st
 from PIL import Image
+import requests
 
 def run_home() :
     st.markdown("<br>", unsafe_allow_html=True)
@@ -12,159 +15,41 @@ def run_home() :
     </p>
     """, unsafe_allow_html=True)
     
-    image = Image.open('img/menu.jpg')
+    image = Image.open('img/home.jpg')
     st.image(image, use_container_width=True)
 
     st.markdown("<hr style='border: 1px solid #3366cc; margin: 20px 0;'>", unsafe_allow_html=True)
 
-    # CSS 스타일 정의
+
     st.markdown("""
-    <style>
-        .header {
-            font-size: 24px;
-            font-weight: bold;
-            color: #3366cc;
-            text-align: center;
-            padding: 20px 0;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #3366cc;
-        }
-        .feature-box {
-            background-color: #f0f8ff;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            height: 150px; /* 고정 높이 설정 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .feature-icon {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .feature-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #3366cc;
-            margin-bottom: 5px;
-        }
-        .feature-desc {
-            font-size: 14px;
-            color: #666;
-        }
-        .metric-box {
-            background-color: #e6f2ff;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            height: 150px; /* 고정 높이 설정 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .metric-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #3366cc;
-        }
-        .metric-label {
-            font-size: 16px;
-            color: #666;
-            margin-top: 5px;
-        }
-    </style>
-    """, unsafe_allow_html=True)
+    ## 앱 소개
+    이 앱은 최신 AI 기술을 활용하여 경기도 지역의 주택 실거래가를 예측합니다. 
+    다양한 요인을 고려하여 정확한 예측 결과를 제공하며, 부동산 투자 및 주택 구매 결정에 도움을 드립니다.
 
-    # 나머지 코드는 이전과 동일
+    ### 주요 기능
+    - 지역별 주택 실거래가 예측
+    - 최신 부동산 동향 분석
+    - 맞춤형 투자 조언
+    """)
 
-
-    # 첫 번째 섹션: 주요 기능
-    st.markdown("<div class='header'>주요 기능</div>", unsafe_allow_html=True)
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        st.markdown("""
-        <div class='feature-box'>
-            <div class='feature-icon'>🔍</div>
-            <div class='feature-title'>지역별 실거래가 조회</div>
-            <div class='feature-desc'>경기도 전역의 상세 실거래가 정보</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col2:
-        st.markdown("""
-        <div class='feature-box'>
-            <div class='feature-icon'>📊</div>
-            <div class='feature-title'>AI 가격 예측</div>
-            <div class='feature-desc'>머신러닝 기반 정확한 가격 예측</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col3:
-        st.markdown("""
-        <div class='feature-box'>
-            <div class='feature-icon'>📈</div>
-            <div class='feature-title'>시장 동향 분석</div>
-            <div class='feature-desc'>최신 부동산 시장 트렌드 제공</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    # 두 번째 섹션: 서비스 현황
-    st.markdown("<div class='header'>서비스 현황</div>", unsafe_allow_html=True)
-    col4, col5, col6 = st.columns(3)
-
-    with col4:
-        st.markdown("""
-        <div class='metric-box'>
-            <div class='metric-value'>10,000+</div>
-            <div class='metric-label'>총 데이터 건수</div>
-            <div class='feature-desc'>분석된 부동산 거래 데이터</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col5:
-        st.markdown("""
-        <div class='metric-box'>
-            <div class='metric-value'>31</div>
-            <div class='metric-label'>분석 지역</div>
-            <div class='feature-desc'>경기도 전체 시/군 포함</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col6:
-        st.markdown("""
-        <div class='metric-box'>
-            <div class='metric-value'>85%</div>
-            <div class='metric-label'>예측 정확도</div>
-            <div class='feature-desc'>지속적인 모델 개선 중</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    st.markdown("<h3 style='text-align: center; '>사용 방법</h3>",unsafe_allow_html=True)
-    st.write("""
+    st.info("""
+    ### 사용 방법
     1. 사이드바에서 원하는 메뉴를 선택하세요
     2. 지역과 동을 선택하세요
     3. 필요한 정보를 입력하세요
     4. AI 예측 결과를 확인하세요
     """)
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    
 
     
 
-    st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("""
-    <h6 syle='text-align: center;'> *본 서비스의 예측 결과는 참고용이며, 실제 거래 시 전문가와 상담을 권장합니다.*</h>
-    """,unsafe_allow_html=True)
+    with st.expander("앱 사용 팁"):
+        st.write("""
+        - AI 예측 모델의 정확도: 약 85% (2024 데이터 기준)
+        - 주요 고려 변수: 위치, 면적, 층수, 건축 연도, 주변 인프라 등
+        - 특정 지역의 개발 계획이나 정책 변화는 별도로 고려해야 함
+        """)
         
 
