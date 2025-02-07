@@ -5,6 +5,5 @@ gdown
 scikit-learn
 requests
 matplotlib
-platform
 numpy
 seaborn
